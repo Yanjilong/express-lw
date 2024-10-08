@@ -2,7 +2,15 @@
 const express = require("express");
 const app = express();
 
-// 定义一个简单的路由
+const timeout = require('connect-timeout');
+
+// 设置请求超时时间为30秒
+app.use(timeout('30s'));
+
+app.get("/", (req, res) => {
+    res.json({ message: "Hello World!" });
+});
+
 app.get("/api/hello", (req, res) => {
     res.json({ message: "Hello from Express!" });
 });
